@@ -1,38 +1,53 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-<script>
-  export default {
-    data(){
-      return {
-        login: 'glesiosantos',
-        name: 'Glêsio Santos',
-        bio: '...',
-        company: 'gooff.digital',
-        avatar_url: 'https://unsplash.it/256',
-        searchInput: ''
-      }
-    },
-    methods: {
-      async fetchGitUser() {
-        const res = await fetch(`https://api.github.com/users/${this.searchInput}`)
-        const { login, name, bio, company, avatar_url} = await res.json()
+<script setup>
+import { reactive } from "vue"
 
-        this.login = login
-        this.name = name
-        this.bio = bio
-        this.company = company
-        this.avatar_url = avatar_url
-      }
-    }
+  const state = reactive({
+    login: '',
+    name: '',
+    bio: '...',
+    company: '',
+    avatar_url: '',
+    repos: [],
+    searchInput: ''
+  })
+
+  async function fetchGitUser() {
+    const res = await fetch(`https://api.github.com/users/${state.searchInput}`)
+    const { login, name, bio, company, avatar_url} = await res.json()
+
+    state.login = login
+    state.name = name
+    state.bio = bio
+    state.company = company
+    state.avatar_url = avatar_url
+
+    fetchUserRepositories(login)
   }
+
+  async function fetchUserRepositories(username) {
+    const res = await fetch(`https://api.github.com/users/${username}/repos`)
+    state.repos = await res.json()
+  }
+
 </script>
 <template>
   <h1>GitHub User Data</h1>
-  <input type="text" v-model="searchInput"/>
-  <button v-on:click="fetchGitUser">Carregar Usuário</button>
-  <br>
-  <img v-bind:src="avatar_url"/><br>
-  <strong>@{{login}}</strong>
-  <h2>{{name}}</h2>
-  <h3>{{ company }}</h3>
-  <span>{{ bio }}</span>
+  <input type="text" v-model="state.searchInput"/>
+  <button @click="fetchGitUser">Carregar Usuário</button>
+  <div v-if="state.login">
+    <img :src="state.avatar_url"/><br>
+    <strong>@{{state.login}}</strong>
+    <h2>{{state.name}}</h2>
+    <h3>{{ state.company }}</h3>
+    <span>{{ state.bio }}</span>
+  </div>
+
+  <section v-if="state.repos.length > 0">
+    <article v-for="repos of state.repos" :key="repos">
+      <h3>{{ repos.full_name }}</h3>
+      <p>{{ repos.description }}</p>
+      <a :href="repos.html_url" target="_blank">Ver no GitHub</a>
+    </article>
+  </section>
+
 </template>
