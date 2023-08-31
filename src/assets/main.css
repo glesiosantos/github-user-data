@@ -69,6 +69,24 @@ button:hover {
 
 a {
   color: #f64348;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a + a {
+  margin-left: 1rem;
+} 
+
+a:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+nav {
+  border-bottom: 1px solid #fff;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 footer {
