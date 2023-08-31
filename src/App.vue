@@ -1,8 +1,10 @@
 <script setup>
-import Github from './components/Github.vue'
+import Profile from './components/Profile.vue'
+
 </script>
 
 <template>
-  <Github/>
+  <!-- <input type="checkbox" v-model="isOpen"> {{isOpen}} -->
+  <Profile/>
 </template>
 
