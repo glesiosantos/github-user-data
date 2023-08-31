@@ -70,3 +70,9 @@ button:hover {
 a {
   color: #f64348;
 }
+
+footer {
+  height: 3rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}

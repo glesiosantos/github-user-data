@@ -4,7 +4,7 @@ import UserInfo from "./UserInfo.vue";
 import Repository from "./Repository.vue";
 import Form from "./Form.vue";
 
-  const searchInput = ref('')
+  const username = ref('')
 
   const state = reactive({
     login: '',
@@ -19,8 +19,7 @@ import Form from "./Form.vue";
     
     const res = await fetch(`https://api.github.com/users/${username}`)
     const { login, name, bio, company, avatar_url} = await res.json()
-    searchInput.value = ''
-
+    
     state.login = login
     state.name = name
     state.bio = bio
@@ -30,8 +29,8 @@ import Form from "./Form.vue";
     await fetchUserRepositories(login)
   }
 
-  async function fetchUserRepositories(username) {
-    const res = await fetch(`https://api.github.com/users/${username}/repos`)
+  async function fetchUserRepositories(searchInput) {
+    const res = await fetch(`https://api.github.com/users/${searchInput}/repos`)
     state.repos = await res.json()
   }
 
@@ -41,9 +40,9 @@ import Form from "./Form.vue";
 
 </script>
 <template>
-  <h1>GitHub User Data</h1>
-  <!-- <p>Pesquisando por: <strong>{{ searchInput }}</strong></p> -->
-  <Form v-on:form-submit="fetchGitUser"/>
+  <slot></slot>
+  <p>Pesquisando por: <strong>{{ username }}</strong></p>
+  <Form v-on:form-submit="fetchGitUser" v-model="username"/>
   <UserInfo
       v-if="state.login" 
       :login="state.login" 
@@ -61,5 +60,5 @@ import Form from "./Form.vue";
         :url="repos.html_url" 
         :description="repos.description"/>
   </section>
-
+  <slot name="footer"></slot>
 </template>
