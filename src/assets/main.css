@@ -58,6 +58,7 @@ button {
   border: unset;
   border-radius: .25rem;
   color: #1c1a1d;
+  margin-left: 1erm;
   font-weight: 700;
   text-transform: uppercase;
 }
