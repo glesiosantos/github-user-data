@@ -28,7 +28,7 @@
 <template>
   <h1>GitHub User Data</h1>
   <input type="text" v-model="searchInput"/>
-  <button v-bind="fetchGitUser">Carregar Usuário</button>
+  <button v-on:click="fetchGitUser">Carregar Usuário</button>
   <br>
   <img v-bind:src="avatar_url"/><br>
   <strong>@{{login}}</strong>
