@@ -1,12 +1,10 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
+import Github from './components/Github.vue'
 </script>
 
 <template>
-  <div class="container mx-auto py-5">
-    <h1 className="text-3xl font-bold underline text-white">
-      Hello world!
-    </h1>
+  <div class="container mx-auto py-5 flex flex-col items-center">
+    <Github/>     
   </div>
 </template>
 
