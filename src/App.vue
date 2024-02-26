@@ -1,18 +1,17 @@
-<script setup>
-import Github from './components/Github.vue'
-</script>
+<script setup></script>
 
 <template>
+  <template>
+    <h1 class="text-white">TEste</h1>
+  </template>
   <div class="container mx-auto py-10 flex flex-col items-center gap-5">
-    <!-- <input type="checkbox" v-model="isOpen"/><span class="text-white my-2">Is Open</span> -->
-    <Github>
-      <h1 class="text-white font-bold text-3xl mb-5">Github User Data</h1>
-      <template v-slot:footer>
-        <p class="text-white font-thin text-base">
-          Desenvolvido por <b class="text-red-500 mt-5">@glesiosantos</b>
-        </p>
-      </template>
-    </Github>     
+    <nav class="flex gap-3">
+      <RouterLink to="/" 
+        class="text-white uppercase text-md font-bold hover:text-red-500 hover:underline">Home</RouterLink>
+      <RouterLink to="/search"
+        class="text-white uppercase text-md font-bold hover:text-red-500 hover:underline">Search</RouterLink>
+    </nav>
+    <RouterView/>
   </div>
 </template>
 

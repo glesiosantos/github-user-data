@@ -3,7 +3,7 @@
 import { computed, reactive, ref } from "vue"
 
 import UserInfo from "./UserInfo.vue"
-import FormUser from "./FormUser.vue";
+import FormUser from "./FormUser.vue"
 import UserRepository from "./UserRepository.vue"
 
 const searchInput = ref('')
