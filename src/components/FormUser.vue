@@ -4,16 +4,10 @@ import { searchHistoryStore } from '../stores/userHistories'
 
 const searchInput = ref('')
 const emit = defineEmits(['formSearch'])
-// const searchHistory = reactive({
-//     users: []
-// })
 const store = searchHistoryStore()
 
 function handleSubmit() {
-    // searchHistory.users.unshift(searchInput.value.trim())
-    // console.log(searchHistory.users)
-    store.users.unshift(searchInput.value)
-    store.pushToHistory(searchInput.value)
+    store.pushToHistory(searchInput.value.trim())
     emit('formSearch', searchInput.value)
 }
 

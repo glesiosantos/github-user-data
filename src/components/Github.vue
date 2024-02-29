@@ -1,12 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { computed, reactive, ref } from "vue"
+import { computed, reactive } from "vue"
 
 import UserInfo from "./UserInfo.vue"
 import FormUser from "./FormUser.vue"
 import UserRepository from "./UserRepository.vue"
-
-const searchInput = ref('')
 
 const state = reactive({
     login: '',
@@ -31,7 +29,6 @@ async function fetchGithubUser(username) {
     state.company = company
     state.avatarUrl = avatar_url
     fetchUserRepos(login)
-    searchInput.value = ''
 }
 
 async function fetchUserRepos(username) {

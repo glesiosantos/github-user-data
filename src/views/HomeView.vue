@@ -1,9 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { searchHistoryStore } from '../stores/userHistories'
-
-console.log(searchHistoryStore.users)
-
+const store = searchHistoryStore()
+console.log(store.users)
 </script>
 <template>
     <div class="flex flex-col gap-4 items-center">
@@ -16,7 +15,7 @@ console.log(searchHistoryStore.users)
             class="bg-red-500 rounded-md py-2 px-3 text-white font-bold">Search Account</RouterLink>  
     </div>
     <div>
-        <article v-for="user in searchHistoryStore.users" :key="user">
+        <article v-for="user in store.users" :key="user">
             <span class="text-white">{{ user }}</span>
         </article>
     </div>
