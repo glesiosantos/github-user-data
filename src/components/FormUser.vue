@@ -7,17 +7,18 @@ const emit = defineEmits(['formSearch'])
 // const searchHistory = reactive({
 //     users: []
 // })
-const searchHistory = searchHistoryStore()
+const store = searchHistoryStore()
 
 function handleSubmit() {
     // searchHistory.users.unshift(searchInput.value.trim())
     // console.log(searchHistory.users)
-    searchHistory.pushToHistory(searchHistory.value)
+    store.users.unshift(searchInput.value)
+    store.pushToHistory(searchInput.value)
     emit('formSearch', searchInput.value)
 }
 
 function showHistory () {
-    alert(`Historico:\n ${searchHistory.users.join('\n')}` )
+    alert(`Historico:\n ${store.users.join('\n')}` )
 }
 
 </script>

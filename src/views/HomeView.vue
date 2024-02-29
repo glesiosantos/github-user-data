@@ -1,5 +1,9 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router'
+import { searchHistoryStore } from '../stores/userHistories'
+
+console.log(searchHistoryStore.users)
+
 </script>
 <template>
     <div class="flex flex-col gap-4 items-center">
@@ -9,6 +13,11 @@ import { RouterLink } from 'vue-router';
             class="text-white">Github Data Search</h1>
         <RouterLink 
             to="/search" 
-            class="bg-red-500 rounded-md py-2 px-3 text-white font-bold">Search Account</RouterLink>
+            class="bg-red-500 rounded-md py-2 px-3 text-white font-bold">Search Account</RouterLink>  
+    </div>
+    <div>
+        <article v-for="user in searchHistoryStore.users" :key="user">
+            <span class="text-white">{{ user }}</span>
+        </article>
     </div>
 </template>
